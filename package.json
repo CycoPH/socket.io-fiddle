@@ -1,16 +1,16 @@
 {
-  "name": "socket.io-fiddle",
-  "version": "0.0.1",
-  "description": "Simple fiddle for socket.io",
-  "author": "Damien Arrachequesne",
-  "license": "MIT",
-  "dependencies": {
-    "express": "4.13.4",
-    "socket.io": "latest",
-    "socket.io-client": "latest"
-  },
+  "name": "socket_io_bug_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "client": "node client.js"
+    "start:server": "node server.js",
+    "start:web": "serve client"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN PRIVATE",
+  "dependencies": {
+    "serve": "^11.1.0",
+    "socket.io": "^2.2.0"
   }
 }

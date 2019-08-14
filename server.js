@@ -1,17 +1,23 @@
+"use strict";
+var SIO = require('socket.io');
+var io = SIO(2222, { serveClient: false });
+io.on('connection', newBaseConnectionHandler);
 
-const express = require('express');
-const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-const port = process.env.PORT || 3000;
+var nsp = io.of("/info");
+nsp.on('connection', newNSConnectionHandler)
 
-app.use(express.static(__dirname + '/public'));
+function newBaseConnectionHandler(socket) {
+	console.log("new ws", socket.id);
+	socket.on('disconnect', () => { console.log(socket.id, "disconnected") })
+	socket.on('join', (data) => { joinHandler(socket, data) });
+}
 
-io.on('connect', onConnect);
-server.listen(port, () => console.log('server listening on port ' + port));
+function newNSConnectionHandler(socket) {
+	console.log("new NS ws", socket.id);
+	socket.on('disconnect', () => { console.log(socket.id, "NS disconnected") })
+}
 
-function onConnect(socket){
-  console.log('connect ' + socket.id);
-
-  socket.on('disconnect', () => console.log('disconnect ' + socket.id));
+function joinHandler(socket, data) {
+	console.log("asking to join");
+	socket.emit('join');
 }

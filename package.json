@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start:server": "node server.js",
-    "start:web": "serve client"
+    "start": "node server.js",
+    "client": "serve client"
   },
   "author": "",
   "license": "SEE LICENSE IN PRIVATE",
